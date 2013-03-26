@@ -1,5 +1,8 @@
 *.class
 
+#Linux backup files
+*~
+
 # Package Files #
 *.jar
 *.war
