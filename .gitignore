@@ -1,7 +1,11 @@
+# Compiled Java bytecode files
 *.class
 
-#Linux backup files
+# Linux backup files
 *~
+
+# Mac Desktop Services garbage
+.DS_Store
 
 # Package Files #
 *.jar
