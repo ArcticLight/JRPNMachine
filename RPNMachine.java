@@ -12,6 +12,22 @@ public class RPNMachine {
 		enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO }	// possible operation identities for stack members
 		
 		/**
+		 * mutator for datavalue
+		 * @param the new data value
+		 */
+		public void setValue (double datavalue) {
+			this.datavalue = datavalue;
+		}
+		
+		/**
+		 * accessor for datavalue
+		 * @return the value of this StackMember
+		 */
+		public double getValue () {
+			return (this.value);
+		}
+		
+		/**
 		 * Throws an ArithmeticException if the calling StackMember is not an operand
 		 * @throws ArithmeticException
 		 */
