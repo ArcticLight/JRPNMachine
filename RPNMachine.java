@@ -21,8 +21,8 @@ public class RPNMachine {
 		}
 		
 		/**
-		 * Evaluates the calling stack member in the context of the given stack.
-		 * @param the stack in which to eval the calling StackMember
+		 * Evaluates the top member of the stack given as a parameter
+		 * @param the stack to be evaluated
 		 */
 		public void eval(java.util.Stack<StackMember> stack) {
 			StackMember current = stack.pop();
