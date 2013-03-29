@@ -16,6 +16,10 @@ public static class StackMember {
 	public double getValue () {
 		return this.datavalue;
 	}
+	
+	public Operation getOp () {
+		return this.op;
+	}
 
 	/**
 	 * Throws an ArithmeticException if the calling StackMember is not an operand
