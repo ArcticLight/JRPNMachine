@@ -5,12 +5,16 @@ public class RPNMachine {
 		enum Operation { DATA, ADD, SUBTRACT }
 		
 		/**
-		 * Evaluates whether a StackMember is an operation or operand.
+		 * Throws an ArithmeticException if the calling StackMember is not an operand
 		 */
 		public void notData () {
 			if(this.op != DATA) throw new ArithmeticException("Stack item " + this + " is not an integer.");	
 		}
-
+		
+		/**
+		 * Evaluates the calling stack member in the context of the given stack.
+		 * @param the stack in which to eval the calling StackMember
+		 */
 		public void eval(java.util.Stack<StackMember> stack) {
 			StackMember current = stack.pop();
 			switch(current.op) {
