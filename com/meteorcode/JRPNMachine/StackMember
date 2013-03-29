@@ -9,10 +9,14 @@ package com.meteorcode.JRPNMachine;
 
 public static class StackMember {
     double datavalue;							// the numerical value of this stack member
-    Operation op;								// the operation type of this stack member
+    Operation op;							// the operation type of this stack member
     enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO }	// possible operation identities for stack members
 	
 	
+	public double getValue () {
+		return this.datavalue;
+	}
+
 	/**
 	 * Throws an ArithmeticException if the calling StackMember is not an operand
 	 * @throws ArithmeticException
