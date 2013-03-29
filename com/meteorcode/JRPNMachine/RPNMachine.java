@@ -19,7 +19,7 @@ public class RPNMachine {
 				next = stack.pop();
 				next.notData();
 				double b = next.datavalue;
-				stack.pop (a + b);
+				stack.push (new StackMember (a + b));
 				break;
 			case SUBTRACT:
 				StackMember next = stack.pop();
@@ -28,7 +28,7 @@ public class RPNMachine {
 				next = stack.pop();
 				next.notData();
 				double b = next.datavalue();
-				stack.pop (a - b);
+				stack.push (new StackMember (a - b));
 				break;
 			case MULTIPLY:
 				StackMember next = stack.pop();
@@ -37,7 +37,7 @@ public class RPNMachine {
 				next = stack.pop();
 				next.notData();
 				double b = next.datavalue();
-				stack.pop (a * b);
+				stack.push (new StackMember (a * b));
 				break;
 			case DIVIDE:
 				StackMember next = stack.pop();
@@ -46,7 +46,7 @@ public class RPNMachine {
 				next = stack.pop();
 				next.notData();
 				double b = next.datavalue();
-				stack.pop (a / b);
+				stack.push (new StackMember (a / b));
 				break;
 			case MODULO:
 				StackMember next = stack.pop();
@@ -55,7 +55,7 @@ public class RPNMachine {
 				next = stack.pop();
 				next.notData();
 				double b = next.datavalue();
-				stack.pop (a % b);
+				stack.push (new StackMember (a % b));
 				break;
 		}
 	}
