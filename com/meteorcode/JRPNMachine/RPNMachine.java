@@ -1,3 +1,10 @@
+/**
+  * A Java reverse-polish notation calculator.
+  * @author Hawk Weisman
+  * @author Max Clive
+  * 
+  */
+
 package com.meteorcode.JRPNMachine;
 
 public class RPNMachine {
