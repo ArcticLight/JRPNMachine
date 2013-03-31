@@ -15,7 +15,7 @@ public class RPNMachine {
 	 */
 	public void eval (java.util.Stack<StackMember> stack) {
 		StackMember current = stack.pop();
-		switch(current.op) {
+		switch(current.getOp()) {
 			case DATA:
 				stack.push(current);
 				break;
