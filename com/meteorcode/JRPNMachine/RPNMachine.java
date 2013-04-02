@@ -8,6 +8,34 @@
 package com.meteorcode.JRPNMachine;
 
 public class RPNMachine {
+	
+	/**
+	 * Parses a String into a StackMember and pushes it to the given Stack
+	 * @param inputString the String to be parsed
+	 * @param stack the RPNMachine instruction stack to which StackMembers should be pushed.
+	 */
+	public void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatError {
+		switch (inputString) {
+			case "+":
+				stack.push(new StackMember (Operation.ADD));
+				break;
+			case "-":
+				stack.push(new StackMember (Operation.SUBTRACT));
+				break;
+			case "/":
+				stack.push(new StackMember (Operation.DIVIDE));
+				break;
+			case "*":
+				stack.push(new StackMember (Operation.MULTIPLY);
+				break;
+			case "%":
+				stack.push(new StackMember (Operation.MODULO));
+				break;
+			default:
+				stack.push(new StackMember (Integer.parseInt(inputString)));
+				break;
+		}
+	}
 		
 	/**
 	 * Evaluates the top member of the stack given as a parameter
