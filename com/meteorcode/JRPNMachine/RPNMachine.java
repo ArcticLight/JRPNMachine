@@ -42,8 +42,17 @@ public class RPNMachine {
 			case "%":
 				instructionStack.push(new StackMember (Operation.MODULO));
 				break;
-			case "delete":
-				instructionStack.push(new StackMember (Operation.DELETE));
+			case "c":
+				instructionStack.push(new StackMember (Operation.CLEAR));
+				break;	
+			case "clear":
+				instructionStack.push(new StackMember (Operation.CLEAR));
+				break;	
+			case "ca":
+				instructionStack.push(new StackMember (Operation.CLEAR_ALL));
+				break;	
+			case "clearall":
+				instructionStack.push(new StackMember (Operation.CLEAR_ALL));
 				break;	
 			default:
 				instructionStack.push(new StackMember (Double.parseDouble(inputString)));
@@ -87,10 +96,15 @@ public class RPNMachine {
 				a = nextValue();
 				instructionStack.push (new StackMember (a % b));
 				break;
-			case DELETE:
+			case CLEAR:
 				instructionStack.pop();
-			}
+				break;
+			case CLEAR_ALL:
+				for (StackMember member : instructionStack) 
+					instructionStack.pop();
+				break;
 		}
+	}
 	
 	
 	/**
