@@ -16,7 +16,7 @@ public class RPNMachine {
 	 * @param inputString the String to be parsed
 	 * @param stack the RPNMachine instruction stack to which StackMembers should be pushed.
 	 */
-	public void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatException {
+	public static void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatException {
 		switch (inputString) {
 			case "+":
 				stack.push(new StackMember (Operation.ADD));

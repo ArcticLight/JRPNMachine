@@ -29,13 +29,13 @@ public class MathTest {
 			System.out.println ("Expected value, " + stack.peek().getValue());
 		}
 		
-		stack.push(new StackMember(4));
 		stack.push(new StackMember(1));
-		stack.push(new StackMember(Operation.ADD));
+		stack.push(new StackMember(4));
+		stack.push(new StackMember(Operation.SUBTRACT));
 		
 		RPNMachine.eval(stack);
 		
-		if (stack.peek().getValue() != 5.0) {
+		if (stack.peek().getValue() != 3.0) {
 			System.err.println ("Unexpected value, " + stack.peek().getValue());
 		}	else {
 			System.out.println ("Expected value, " + stack.peek().getValue());
@@ -52,7 +52,69 @@ public class MathTest {
 		}	else {
 			System.out.println ("Expected value, " + stack.peek().getValue());
 		}
-
+	
+		stack.push(new StackMember(50));
+		stack.push(new StackMember(5));
+		stack.push(new StackMember(Operation.DIVIDE));
+		
+		RPNMachine.eval(stack);
+		
+		if (stack.peek().getValue() != 10.0) {
+			System.err.println ("Unexpected value, " + stack.peek().getValue());
+		}	else {
+			System.out.println ("Expected value, " + stack.peek().getValue());
+		}
+		
+		
+		// test input parser 
+		
+		RPNMachine.parseInput("1", stack);
+		RPNMachine.parseInput("1", stack);
+		RPNMachine.parseInput("+", stack);
+		
+		RPNMachine.eval(stack);
+		
+		if (stack.peek().getValue() != 2.0) {
+			System.err.println ("Unexpected value, " + stack.peek().getValue());
+		}	else {
+			System.out.println ("Expected value, " + stack.peek().getValue());
+		}
+		
+		RPNMachine.parseInput("1", stack);
+		RPNMachine.parseInput("4", stack);
+		RPNMachine.parseInput("-", stack);
+		
+		RPNMachine.eval(stack);
+		
+		if (stack.peek().getValue() != 3.0) {
+			System.err.println ("Unexpected value, " + stack.peek().getValue());
+		}	else {
+			System.out.println ("Expected value, " + stack.peek().getValue());
+		}
+		
+		RPNMachine.parseInput("5", stack);
+		RPNMachine.parseInput("10", stack);
+		RPNMachine.parseInput("*", stack);
+		
+		RPNMachine.eval(stack);
+		
+		if (stack.peek().getValue() != 50.0) {
+			System.err.println ("Unexpected value, " + stack.peek().getValue());
+		}	else {
+			System.out.println ("Expected value, " + stack.peek().getValue());
+		}
+	
+		RPNMachine.parseInput("50", stack);
+		RPNMachine.parseInput("5", stack);
+		RPNMachine.parseInput("/", stack);
+		
+		RPNMachine.eval(stack);
+		
+		if (stack.peek().getValue() != 10.0) {
+			System.err.println ("Unexpected value, " + stack.peek().getValue());
+		}	else {
+			System.out.println ("Expected value, " + stack.peek().getValue());
+		}
 	}
 
 }
