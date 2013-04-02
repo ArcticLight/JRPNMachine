@@ -25,8 +25,12 @@ public class Polonium {
 							System.out.printf(">> %s : \"%s\"\n", machine.showState(), temp[i+1]);
 					}
 				}
-			} catch (Exception e) {
-				System.err.printf("Error! Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
+			} 
+			catch (NumberFormatException e) {
+				System.err.printf("ERR: NumberFormatException\nPlease enter acceptable operators and operands!");
+			}
+			catch (Exception e) {
+				System.err.printf("ERR: Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
 			}
 		} while(input != null && !input.equals("x"));
 		
