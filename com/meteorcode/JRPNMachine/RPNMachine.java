@@ -32,7 +32,7 @@ public class RPNMachine {
 				stack.push(new StackMember (Operation.MODULO));
 				break;
 			default:
-				stack.push(new StackMember (Integer.parseInt(inputString)));
+				stack.push(new StackMember (Double.parseDouble(inputString)));
 				break;
 		}
 	}
