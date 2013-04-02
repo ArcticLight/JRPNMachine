@@ -14,9 +14,8 @@ public class RPNMachine {
 	java.util.Stack<StackMember> instructionStack = new java.util.Stack<StackMember>();
 	
 	/**
-	 * Parses a String into a StackMember and pushes it to the given Stack
+	 * Parses a String into a StackMember and pushes it to the instructionStack, and then evals the stack.
 	 * @param inputString the String to be parsed
-	 * @param stack the RPNMachine instruction stack to which StackMembers should be pushed.
 	 */
 	public void eval (String inputString) throws NumberFormatException {
 		switch (inputString) {
@@ -42,11 +41,11 @@ public class RPNMachine {
 				instructionStack.push(new StackMember (Double.parseDouble(inputString)));
 				break;
 		}
+		eval();
 	}
 		
 	/**
-	 * Evaluates the top member of the stack given as a parameter
-	 * @param the stack to be evaluated
+	 * Evaluates the stack
 	 */
 	public void eval () {
 		StackMember current = instructionStack.pop();
