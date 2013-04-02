@@ -46,7 +46,7 @@ public class RPNMachine {
 	 * Evaluates the top member of the stack given as a parameter
 	 * @param the stack to be evaluated
 	 */
-	public void eval (java.util.Stack<StackMember> stack) {
+	public static void eval (java.util.Stack<StackMember> stack) {
 		StackMember current = stack.pop();
 		StackMember next;
 		double a, b;
