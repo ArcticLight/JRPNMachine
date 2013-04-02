@@ -100,7 +100,7 @@ public class RPNMachine {
 				instructionStack.pop();
 				break;
 			case CLEAR_ALL:
-				for (StackMember member : instructionStack) 
+				while (!instructionStack.isEmpty())
 					instructionStack.pop();
 				break;
 		}
