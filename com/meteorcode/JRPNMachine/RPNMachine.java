@@ -1,5 +1,7 @@
 /**
   * A Java reverse-polish notation calculator.
+  * 
+  * @version 2.0
   * @author Hawk Weisman
   * @author Max Clive
   * 
@@ -10,6 +12,8 @@ package com.meteorcode.JRPNMachine;
 import com.meteorcode.JRPNMachine.StackMember.Operation;
 
 public class RPNMachine {
+	
+	public final String R_VERSION = "2.0";
 	
 	protected java.util.Stack<StackMember> instructionStack;
 	

@@ -1,6 +1,12 @@
+/**
+ * @version BETA 1
+ * @author Max Clive
+ *
+ */
+
 public class Polonium {
 	
-	public static final String P_VERSION = "0.01a";
+	public static final String P_VERSION = "0.01b";
 	
 	public static void main(String[] args) {
 		java.util.Scanner in = new java.util.Scanner(System.in);
