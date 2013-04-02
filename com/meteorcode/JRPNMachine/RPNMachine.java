@@ -26,7 +26,7 @@ public class RPNMachine {
 				stack.push(new StackMember (Operation.DIVIDE));
 				break;
 			case "*":
-				stack.push(new StackMember (Operation.MULTIPLY);
+				stack.push(new StackMember (Operation.MULTIPLY));
 				break;
 			case "%":
 				stack.push(new StackMember (Operation.MODULO));
