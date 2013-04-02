@@ -7,15 +7,15 @@
 
 package com.meteorcode.JRPNMachine;
 
-public static class StackMember {
+public class StackMember {
     double datavalue;							// the numerical value of this stack member
     Operation op;							// the operation type of this stack member
-    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO }	// possible operation identities for stack members
+    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, DELETE }	// possible operation identities for stack members
 	
 	
 	public StackMember (int value) {
 		this.value = value;
-		this.op = DATA;
+		this.op = Operation.DATA;
 	}
 	
 	public StackMember (Operation op) {
@@ -35,6 +35,6 @@ public static class StackMember {
 	 * @throws ArithmeticException
 	 */
 	public void notData () {
-		if(this.op != DATA) throw new ArithmeticException("Stack item " + this + " is not an integer.");	
+		if(this.op != Operation.DATA) throw new ArithmeticException("Stack item " + this + " is not an integer.");	
 	}
 }

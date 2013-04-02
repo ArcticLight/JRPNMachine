@@ -31,6 +31,9 @@ public class RPNMachine {
 			case "%":
 				stack.push(new StackMember (Operation.MODULO));
 				break;
+			case "delete":
+				stack.push(new StackMember (Operation.DELETE));
+				break;	
 			default:
 				stack.push(new StackMember (Double.parseDouble(inputString)));
 				break;
@@ -43,55 +46,58 @@ public class RPNMachine {
 	 */
 	public void eval (java.util.Stack<StackMember> stack) {
 		StackMember current = stack.pop();
+		double a, b;
 		switch(current.getOp()) {
-			case DATA:
+			case Operation.DATA:
 				stack.push(current);
 				break;
-			case ADD:
+			case Operation.ADD:
 				StackMember next = stack.pop();
 				next.notData();
-				double a = next.getValue();
+				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				double b = next.getValue();
+				b = next.getValue();
 				stack.push (new StackMember (a + b));
 				break;
-			case SUBTRACT:
+			case Operation.SUBTRACT:
 				StackMember next = stack.pop();
 				next.notData();
-				double a = next.getValue();
+				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				double b = next.getValue();
+				b = next.getValue();
 				stack.push (new StackMember (a - b));
 				break;
-			case MULTIPLY:
+			case Operation.MULTIPLY:
 				StackMember next = stack.pop();
 				next.notData();
-				double a = next.getValue();
+				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				double b = next.getValue();
+				b = next.getValue();
 				stack.push (new StackMember (a * b));
 				break;
-			case DIVIDE:
+			case Operation.DIVIDE:
 				StackMember next = stack.pop();
 				next.notData();
-				double a = next.getValue();
+				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				double b = next.datavalue();
+				b = next.datavalue();
 				stack.push (new StackMember (a / b));
 				break;
-			case MODULO:
+			case Operation.MODULO:
 				StackMember next = stack.pop();
 				next.notData();
-				double a = next.getValue();
+				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				double b = next.datavalue();
+				b = next.datavalue();
 				stack.push (new StackMember (a % b));
 				break;
+			case Operation.DELETE:
+				stack.pop(next);
+			}
 		}
 	}
-}
