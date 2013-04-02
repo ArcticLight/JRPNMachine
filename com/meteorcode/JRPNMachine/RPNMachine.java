@@ -11,33 +11,35 @@ import com.meteorcode.JRPNMachine.StackMember.Operation;
 
 public class RPNMachine {
 	
+	java.util.Stack<StackMember> instructionStack = new java.util.Stack<StackMember>();
+	
 	/**
 	 * Parses a String into a StackMember and pushes it to the given Stack
 	 * @param inputString the String to be parsed
 	 * @param stack the RPNMachine instruction stack to which StackMembers should be pushed.
 	 */
-	public static void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatException {
+	public void eval (String inputString) throws NumberFormatException {
 		switch (inputString) {
 			case "+":
-				stack.push(new StackMember (Operation.ADD));
+				instructionStack.push(new StackMember (Operation.ADD));
 				break;
 			case "-":
-				stack.push(new StackMember (Operation.SUBTRACT));
+				instructionStack.push(new StackMember (Operation.SUBTRACT));
 				break;
 			case "/":
-				stack.push(new StackMember (Operation.DIVIDE));
+				instructionStack.push(new StackMember (Operation.DIVIDE));
 				break;
 			case "*":
-				stack.push(new StackMember (Operation.MULTIPLY));
+				instructionStack.push(new StackMember (Operation.MULTIPLY));
 				break;
 			case "%":
-				stack.push(new StackMember (Operation.MODULO));
+				instructionStack.push(new StackMember (Operation.MODULO));
 				break;
 			case "delete":
-				stack.push(new StackMember (Operation.DELETE));
+				instructionStack.push(new StackMember (Operation.DELETE));
 				break;	
 			default:
-				stack.push(new StackMember (Double.parseDouble(inputString)));
+				instructionStack.push(new StackMember (Double.parseDouble(inputString)));
 				break;
 		}
 	}
@@ -46,61 +48,51 @@ public class RPNMachine {
 	 * Evaluates the top member of the stack given as a parameter
 	 * @param the stack to be evaluated
 	 */
-	public static void eval (java.util.Stack<StackMember> stack) {
-		StackMember current = stack.pop();
-		StackMember next;
+	public void eval () {
+		StackMember current = instructionStack.pop();
 		double a, b;
 		switch(current.getOp()) {
 			case DATA:
-				stack.push(current);
+				instructionStack.push(current);
 				break;
 			case ADD:
-				next = stack.pop();
-				next.notData();
-				a = next.getValue();
-				next = stack.pop();
-				next.notData();
-				b = next.getValue();
-				stack.push (new StackMember (a + b));
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push (new StackMember (a + b));
 				break;
 			case SUBTRACT:
-				next = stack.pop();
-				next.notData();
-				a = next.getValue();
-				next = stack.pop();
-				next.notData();
-				b = next.getValue();
-				stack.push (new StackMember (a - b));
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push (new StackMember (a - b));
 				break;
 			case MULTIPLY:
-				next = stack.pop();
-				next.notData();
-				a = next.getValue();
-				next = stack.pop();
-				next.notData();
-				b = next.getValue();
-				stack.push (new StackMember (a * b));
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push (new StackMember (a * b));
 				break;
 			case DIVIDE:
-				next = stack.pop();
-				next.notData();
-				a = next.getValue();
-				next = stack.pop();
-				next.notData();
-				b = next.getValue();
-				stack.push (new StackMember (a / b));
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push (new StackMember (a / b));
 				break;
 			case MODULO:
-				next = stack.pop();
-				next.notData();
-				a = next.getValue();
-				next = stack.pop();
-				next.notData();
-				b = next.getValue();
-				stack.push (new StackMember (a % b));
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push (new StackMember (a % b));
 				break;
 			case DELETE:
-				stack.pop();
+				instructionStack.pop();
 			}
 		}
+	
+	/**
+	 * gets the next operand on the instructionStack.
+	 * @return the next operand on the instructionStack
+	 * @throws ArithmeticException if the next operand on the instructionStack is not data.
+	 */
+	private double nextValue () {
+		StackMember next = instructionStack.pop();
+		next.notData();
+		return next.getValue();
 	}
+}
