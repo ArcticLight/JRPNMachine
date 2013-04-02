@@ -7,6 +7,8 @@
 
 package com.meteorcode.JRPNMachine;
 
+import com.meteorcode.JRPNMachine.StackMember.Operation;
+
 public class RPNMachine {
 	
 	/**
@@ -14,7 +16,7 @@ public class RPNMachine {
 	 * @param inputString the String to be parsed
 	 * @param stack the RPNMachine instruction stack to which StackMembers should be pushed.
 	 */
-	public void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatError {
+	public void parseInput (String inputString, java.util.Stack<StackMember> stack) throws NumberFormatException {
 		switch (inputString) {
 			case "+":
 				stack.push(new StackMember (Operation.ADD));
@@ -46,13 +48,14 @@ public class RPNMachine {
 	 */
 	public void eval (java.util.Stack<StackMember> stack) {
 		StackMember current = stack.pop();
+		StackMember next;
 		double a, b;
 		switch(current.getOp()) {
-			case Operation.DATA:
+			case DATA:
 				stack.push(current);
 				break;
-			case Operation.ADD:
-				StackMember next = stack.pop();
+			case ADD:
+				next = stack.pop();
 				next.notData();
 				a = next.getValue();
 				next = stack.pop();
@@ -60,8 +63,8 @@ public class RPNMachine {
 				b = next.getValue();
 				stack.push (new StackMember (a + b));
 				break;
-			case Operation.SUBTRACT:
-				StackMember next = stack.pop();
+			case SUBTRACT:
+				next = stack.pop();
 				next.notData();
 				a = next.getValue();
 				next = stack.pop();
@@ -69,8 +72,8 @@ public class RPNMachine {
 				b = next.getValue();
 				stack.push (new StackMember (a - b));
 				break;
-			case Operation.MULTIPLY:
-				StackMember next = stack.pop();
+			case MULTIPLY:
+				next = stack.pop();
 				next.notData();
 				a = next.getValue();
 				next = stack.pop();
@@ -78,26 +81,26 @@ public class RPNMachine {
 				b = next.getValue();
 				stack.push (new StackMember (a * b));
 				break;
-			case Operation.DIVIDE:
-				StackMember next = stack.pop();
+			case DIVIDE:
+				next = stack.pop();
 				next.notData();
 				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				b = next.datavalue();
+				b = next.getValue();
 				stack.push (new StackMember (a / b));
 				break;
-			case Operation.MODULO:
-				StackMember next = stack.pop();
+			case MODULO:
+				next = stack.pop();
 				next.notData();
 				a = next.getValue();
 				next = stack.pop();
 				next.notData();
-				b = next.datavalue();
+				b = next.getValue();
 				stack.push (new StackMember (a % b));
 				break;
-			case Operation.DELETE:
-				stack.pop(next);
+			case DELETE:
+				stack.pop();
 			}
 		}
 	}

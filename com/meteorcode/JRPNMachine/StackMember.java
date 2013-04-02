@@ -13,8 +13,8 @@ public class StackMember {
     enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, DELETE }	// possible operation identities for stack members
 	
 	
-	public StackMember (int value) {
-		this.value = value;
+	public StackMember (double value) {
+		this.datavalue = value;
 		this.op = Operation.DATA;
 	}
 	
