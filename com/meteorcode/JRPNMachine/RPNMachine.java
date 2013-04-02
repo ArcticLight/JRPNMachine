@@ -11,13 +11,13 @@ import com.meteorcode.JRPNMachine.StackMember.Operation;
 
 public class RPNMachine {
 	
-	java.util.Stack<StackMember> instructionStack = new java.util.Stack<StackMember>();
+	protected static java.util.Stack<StackMember> instructionStack = new java.util.Stack<StackMember>();
 	
 	/**
 	 * Parses a String into a StackMember and pushes it to the instructionStack, and then evals the stack.
 	 * @param inputString the String to be parsed
 	 */
-	public void eval (String inputString) throws NumberFormatException {
+	public static void eval (String inputString) throws NumberFormatException {
 		switch (inputString) {
 			case "+":
 				instructionStack.push(new StackMember (Operation.ADD));
@@ -47,7 +47,7 @@ public class RPNMachine {
 	/**
 	 * Evaluates the stack
 	 */
-	public void eval () {
+	public static void eval () {
 		StackMember current = instructionStack.pop();
 		double a, b;
 		switch(current.getOp()) {
@@ -84,12 +84,21 @@ public class RPNMachine {
 			}
 		}
 	
+	
+	/**
+	 * shows the state of the stack
+	 * @return the state of the stack
+	 */
+	public String showState () {
+		return instructionStack.toString();
+	}
+	
 	/**
 	 * gets the next operand on the instructionStack.
 	 * @return the next operand on the instructionStack
 	 * @throws ArithmeticException if the next operand on the instructionStack is not data.
 	 */
-	private double nextValue () {
+	private static double nextValue () {
 		StackMember next = instructionStack.pop();
 		next.notData();
 		return next.getValue();
