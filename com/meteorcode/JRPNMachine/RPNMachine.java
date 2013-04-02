@@ -89,12 +89,22 @@ public class RPNMachine {
 	 * shows the state of the stack
 	 * @return the state of the stack
 	 */
-	public String showState () {
+	public static String showState () {
 		return instructionStack.toString();
 	}
 	
 	/**
-	 * gets the next operand on the instructionStack.
+	 * shows the next value on the stack
+	 * @return the next value on the stack.
+	 */
+	public static double showNextValue () {
+		StackMember next = instructionStack.peek();
+		next.notData();
+		return next.getValue();
+	}
+	
+	/**
+	 * pops the next operand on the instructionStack.
 	 * @return the next operand on the instructionStack
 	 * @throws ArithmeticException if the next operand on the instructionStack is not data.
 	 */
