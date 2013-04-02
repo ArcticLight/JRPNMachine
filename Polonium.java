@@ -26,7 +26,7 @@ public class Polonium {
 					}
 				}
 			} catch (Exception e) {
-				System.out.printf("Error! Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
+				System.err.printf("Error! Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
 			}
 		} while(input != null && !input.equals("x"));
 		
