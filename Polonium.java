@@ -60,14 +60,17 @@ public class Polonium {
 						//h and help: display help
 						case "h":
 						case "help":
-							System.out.printf(">> Welcome to the polonium v%s help file\n", P_VERSION);
-							System.out.println(">> Polonium commands: \n>> x, exit: quit Polonium\n" +
-									">> pd, p: display the current precision mode\n" +
-									">> pt: I don't know whhelat this does \n>> h, help: display this help file"); //FIXME: max, what does pt do?
-							System.out.println(">> RPNMachine commands: \n>> +, -, /, *: add, subtract, divide, multiply \n"
-									+ ">> ^: raise the next number to the power of the number after it\n"
-									+ ">> c, clear: remove a number or instruction from the stack\n"
-									+ ">> ca, clearall: remove all numbers or instructions from the stack\n");
+							System.out.printf (">> Welcome to the polonium v%s help file\n", P_VERSION);
+							System.out.println(">> Polonium commands: \n"
+							                 + ">> x, exit: quit Polonium\n" +
+									         + ">> pd, p: display the current precision mode\n" +
+									         + ">> pt: Toggles the current precision mode \n"
+									         + ">> h, help: display this help file"); //FIXME: max, what does pt do?
+							System.out.println(">> RPNMachine commands: \n"
+							                 + ">> +, -, /, *: add, subtract, divide, multiply \n"
+									         + ">> ^: raise the next number to the power of the number after it\n"
+									         + ">> c, clear: remove a number or instruction from the stack\n"
+									         + ">> ca, clearall: remove all numbers or instructions from the stack\n");
 							break;
 				}
 			} 
