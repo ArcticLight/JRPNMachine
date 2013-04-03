@@ -104,6 +104,20 @@ public class Value {
 		}
 	}
 	
+	@Override
+	public String toString () {
+		if (this.precise()) {
+			return getPrecise().toString();
+		} else {
+			//if there is no fractional part
+			if(Math.floor(this.getUnprecise()) == this.getUnprecise()) {
+				return String.format("%.0f", getUnprecise());
+			}
+			return String.format("%f",getUnprecise());
+		}
+			
+	}
+	
 	static {
 		NewPrecise = false;
 	}
