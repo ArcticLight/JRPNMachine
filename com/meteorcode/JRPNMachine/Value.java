@@ -42,11 +42,11 @@ public class Value {
 		doubleData = data;
 	}
 	
-	public boolean defaultPrecision() {
+	public static boolean getDefaultPrecision() {
 	    return NewPrecise;
 	}
 	
-	public void setDefaultPrecision(boolean precise) {
+	public static void setDefaultPrecision(boolean precise) {
 	    NewPrecise = precise;
 	}
 

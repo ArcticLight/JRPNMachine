@@ -2,6 +2,8 @@
  * @author Max Clive
  *
  */
+ 
+import com.meteorcode.JRPNMachine.Value;
 
 public class Polonium {
 	
@@ -49,10 +51,11 @@ public class Polonium {
 						//pd, also p:  display precision mode
 						case "pd":
 						case "p":
-							//TODO: Implement this
+						    System.out.printf("The current default precision mode is %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
 							break;
 						case "pt":
-							//TODO: Implement this
+						    Value.setDefaultPrecision(!Value.getDefaultPrecision());
+						    System.out.printf("Precision mode toggled to %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
 							break;
 						//h and help: display help
 						case "h":
