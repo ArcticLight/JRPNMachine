@@ -80,17 +80,17 @@ public class RPNMachine {
 			case SUBTRACT:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a - b));
+				instructionStack.push (new StackMember (Value.subtract(a, b)));
 				break;
 			case MULTIPLY:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a * b));
+				instructionStack.push (new StackMember (Value.multiply(a, b));
 				break;
 			case DIVIDE:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a / b));
+				instructionStack.push (new StackMember (Value.divide(a, b));
 				break;
 			case CLEAR:
 				instructionStack.pop();

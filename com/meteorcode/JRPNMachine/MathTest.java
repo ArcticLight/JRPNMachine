@@ -3,8 +3,6 @@
  */
 package com.meteorcode.JRPNMachine;
 
-import com.meteorcode.JRPNMachine.StackMember.Operation;
-
 /**
  * @author hawk
  *
@@ -16,7 +14,7 @@ public class MathTest {
 			target.eval(s);
 		}
 		
-		if (target.showNextValue() == expected) {
+		if (target.showNextValue().getUnprecise() == expected) {
 			System.out.println ("GOOD: " + target.showState());
 		} else {
 			System.err.println("BAD: expected " + expected + ", got " + target.showNextValue());
