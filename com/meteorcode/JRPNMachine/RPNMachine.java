@@ -42,6 +42,9 @@ public class RPNMachine {
 			case "*":
 				instructionStack.push(new StackMember (Operation.MULTIPLY));
 				break;
+			case "^":
+				instructionStack.push(new StackMember (Operation.POWER));
+				break;
 			case "c":
 				instructionStack.push(new StackMember (Operation.CLEAR));
 				break;	
@@ -92,6 +95,10 @@ public class RPNMachine {
 				a = nextValue();
 				instructionStack.push (new StackMember (Value.divide(a, b)));
 				break;
+			case POWER:
+				b = nextValue();
+				a = nextValue();
+				instructionStack.push(new StackMember (Value.power(a, b)));
 			case CLEAR:
 				instructionStack.pop();
 				break;

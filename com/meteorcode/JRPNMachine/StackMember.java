@@ -10,7 +10,7 @@ package com.meteorcode.JRPNMachine;
 public class StackMember {
     Value myValue;							// the numerical value of this stack member
     Operation op;							// the operation type of this stack member
-    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, CLEAR, CLEAR_ALL }	// possible operation identities for stack members
+    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER, CLEAR, CLEAR_ALL }	// possible operation identities for stack members
 	
 	/**
 	 * constructor: creates a new StackMember with a value (operand)
@@ -79,6 +79,8 @@ public class StackMember {
 				return "*";
 			case DIVIDE:
 				return "/";
+			case POWER:
+				return "^";
 			case CLEAR:
 				return "clear";
 			case CLEAR_ALL:
