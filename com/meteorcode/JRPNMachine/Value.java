@@ -37,6 +37,11 @@ public class Value {
 		bigData = data;
 	}
 	
+	public Value(double data) {
+		myPrecision = false;
+		doubleData = data;
+	}
+
 	public boolean precise() {
 		return myPrecision;
 	}
@@ -60,14 +65,15 @@ public class Value {
 	
 	public static Value add (Value a, Value b) {
 		if(a.precise() || b.precise()) {
-			asdlfj
+			return new Value(a.getPrecise().add(b.getPrecise()));
+		} else {
+			return new Value(a.getUnprecise() + b.getUnprecise());
+			
 		}
 	}
 	
 	static {
 		NewPrecise = false;
 	}
-	
-	
 
 }
