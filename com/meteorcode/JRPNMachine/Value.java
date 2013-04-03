@@ -72,6 +72,38 @@ public class Value {
 		}
 	}
 	
+	public static Value subtract(Value a, Value b) {
+		if(a.precise() || b.precise()) {
+			return new Value(a.getPrecise().subtract(b.getPrecise()));
+		} else {
+			return new Value(a.getUnprecise() - b.getUnprecise());
+		}
+	}
+	
+	public static Value multiply(Value a, Value b) {
+		if(a.precise() || b.precise()) {
+			return new Value(a.getPrecise().multiply(b.getPrecise()));
+		} else {
+			return new Value(a.getUnprecise() - b.getUnprecise());
+		}
+	}
+	
+	public static Value divide(Value a, Value b) {
+		if(a.precise() || b.precise()) {
+			return new Value(a.getPrecise().divide(b.getPrecise()));
+		} else {
+			return new Value(a.getUnprecise() / b.getUnprecise());
+		}
+	}
+	
+	public static Value power(Value a, Value b) {
+		if(a.precise() || b.precise()) {
+			throw new ArithmeticException("Error! This operation not implemented for Precise numbers");
+		} else {
+			return new Value(Math.pow(a.getUnprecise(), b.getUnprecise()));
+		}
+	}
+	
 	static {
 		NewPrecise = false;
 	}
