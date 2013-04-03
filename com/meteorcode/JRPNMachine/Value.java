@@ -84,7 +84,7 @@ public class Value {
 		if(a.precise() || b.precise()) {
 			return new Value(a.getPrecise().multiply(b.getPrecise()));
 		} else {
-			return new Value(a.getUnprecise() - b.getUnprecise());
+			return new Value(a.getUnprecise() * b.getUnprecise());
 		}
 	}
 	
