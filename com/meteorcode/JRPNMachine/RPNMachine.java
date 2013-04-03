@@ -17,7 +17,6 @@ public class RPNMachine {
 	
 	protected java.util.Stack<StackMember> instructionStack;
 	
-	
 	/**
 	 * 0-param constructor
 	 */
@@ -43,8 +42,8 @@ public class RPNMachine {
 			case "*":
 				instructionStack.push(new StackMember (Operation.MULTIPLY));
 				break;
-			case "%":
-				instructionStack.push(new StackMember (Operation.MODULO));
+			case "^":
+				instructionStack.push(new StackMember (Operation.POWER));
 				break;
 			case "c":
 				instructionStack.push(new StackMember (Operation.CLEAR));
@@ -59,7 +58,7 @@ public class RPNMachine {
 				instructionStack.push(new StackMember (Operation.CLEAR_ALL));
 				break;	
 			default:
-				instructionStack.push(new StackMember (Double.parseDouble(inputString)));
+				instructionStack.push(new StackMember (inputString));
 				break;
 		}
 		eval();
@@ -70,7 +69,8 @@ public class RPNMachine {
 	 */
 	public void eval () {
 		StackMember current = instructionStack.pop();
-		double a, b;
+		Value a;
+		Value b;
 		switch(current.getOp()) {
 			case DATA:
 				instructionStack.push(current);
@@ -78,27 +78,27 @@ public class RPNMachine {
 			case ADD:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a + b));
+				instructionStack.push (new StackMember (Value.add(a, b)));
 				break;
 			case SUBTRACT:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a - b));
+				instructionStack.push (new StackMember (Value.subtract(a, b)));
 				break;
 			case MULTIPLY:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a * b));
+				instructionStack.push (new StackMember (Value.multiply(a, b)));
 				break;
 			case DIVIDE:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a / b));
+				instructionStack.push (new StackMember (Value.divide(a, b)));
 				break;
-			case MODULO:
+			case POWER:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a % b));
+				instructionStack.push (new StackMember (Value.power(a, b)));
 				break;
 			case CLEAR:
 				instructionStack.pop();
@@ -123,7 +123,7 @@ public class RPNMachine {
 	 * shows the next value on the stack
 	 * @return the next value on the stack.
 	 */
-	public double showNextValue () {
+	public Value showNextValue () {
 		StackMember next = instructionStack.peek();
 		next.notData();
 		return next.getValue();
@@ -134,7 +134,7 @@ public class RPNMachine {
 	 * @return the next operand on the instructionStack
 	 * @throws ArithmeticException if the next operand on the instructionStack is not data.
 	 */
-	private double nextValue () {
+	private Value nextValue () {
 		StackMember next = instructionStack.pop();
 		next.notData();
 		return next.getValue();
