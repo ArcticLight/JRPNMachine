@@ -8,19 +8,26 @@
 package com.meteorcode.JRPNMachine;
 
 public class StackMember {
-    double value;							// the numerical value of this stack member
+    Value myValue;							// the numerical value of this stack member
     Operation op;							// the operation type of this stack member
-    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, CLEAR, CLEAR_ALL }	// possible operation identities for stack members
+    enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, CLEAR, CLEAR_ALL }	// possible operation identities for stack members
 	
-    
+	/**
+	 * constructor: creates a new StackMember with a value (operand)
+	 * @param value
+	 */
+	public StackMember (Value value) {
+		myValue = value;
+		op = Operation.DATA;
+	}    
     
 	/**
 	 * constructor: creates a new StackMember with a value (operand)
 	 * @param value
 	 */
 	public StackMember (String value) {
-		this.value = value;
-		this.op = Operation.DATA;
+		myValue = new Value(value);
+		op = Operation.DATA;
 	}
 	
 	/**
@@ -29,14 +36,15 @@ public class StackMember {
 	 */
 	public StackMember (Operation op) {
 		this.op = op;
+		myValue = null;
 	}
 	
 	/**
 	 * accessor for datavalue
-	 * @return the value of this StackMember (0 if it is an operator)
+	 * @return the value of this StackMember (null if it is an operator)
 	 */
-	public double getValue () {
-		return this.value;
+	public Value getValue () {
+		return this.myValue;
 	}
 	
 	/**
@@ -62,7 +70,7 @@ public class StackMember {
 	 public String toString () {
 		switch (this.op) {
 			case DATA:
-				return "" + value;
+				return myValue.toString();
 			case ADD:
 				return "+";
 			case SUBTRACT:
@@ -71,8 +79,6 @@ public class StackMember {
 				return "*";
 			case DIVIDE:
 				return "/";
-			case MODULO:
-				return "%";
 			case CLEAR:
 				return "clear";
 			case CLEAR_ALL:

@@ -18,7 +18,7 @@ public class Value {
 	private boolean myPrecision;
 	
 	//contained data
-	private double doublData;
+	private double doubleData;
 	private BigDecimal bigData;
 	
 	
@@ -28,11 +28,11 @@ public class Value {
 			bigData = new BigDecimal(instantiation);
 		}
 		else {
-			doublData = Double.parseDouble(instantiation);
+			doubleData = Double.parseDouble(instantiation);
 		}
 	}
 	
-	private Value(BigDecimal data) {
+	private Value (BigDecimal data) {
 		myPrecision = true;
 		bigData = data;
 	}
@@ -46,7 +46,7 @@ public class Value {
 			return bigData.doubleValue();
 		}
 		else {
-			return doublData;
+			return doubleData;
 		}
 	}
 	
@@ -54,11 +54,11 @@ public class Value {
 		if(myPrecision) {
 			return bigData;
 		} else {
-			return new BigDecimal(doublData);
+			return new BigDecimal(doubleData);
 		}
 	}
 	
-	public static Value add(Value a, Value b) {
+	public static Value add (Value a, Value b) {
 		if(a.precise() || b.precise()) {
 			//BigDecimal temp = 
 		}

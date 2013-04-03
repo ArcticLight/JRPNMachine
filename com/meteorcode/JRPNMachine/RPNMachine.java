@@ -58,7 +58,7 @@ public class RPNMachine {
 				instructionStack.push(new StackMember (Operation.CLEAR_ALL));
 				break;	
 			default:
-				instructionStack.push(new StackMember (Double.parseDouble(inputString)));
+				instructionStack.push(new StackMember (inputString));
 				break;
 		}
 		eval();
@@ -94,11 +94,6 @@ public class RPNMachine {
 				a = nextValue();
 				instructionStack.push (new StackMember (a / b));
 				break;
-			case MODULO:
-				b = nextValue();
-				a = nextValue();
-				instructionStack.push (new StackMember (a % b));
-				break;
 			case CLEAR:
 				instructionStack.pop();
 				break;
@@ -122,7 +117,7 @@ public class RPNMachine {
 	 * shows the next value on the stack
 	 * @return the next value on the stack.
 	 */
-	public double showNextValue () {
+	public Value showNextValue () {
 		StackMember next = instructionStack.peek();
 		next.notData();
 		return next.getValue();
@@ -133,7 +128,7 @@ public class RPNMachine {
 	 * @return the next operand on the instructionStack
 	 * @throws ArithmeticException if the next operand on the instructionStack is not data.
 	 */
-	private double nextValue () {
+	private Value nextValue () {
 		StackMember next = instructionStack.pop();
 		next.notData();
 		return next.getValue();
