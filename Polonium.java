@@ -12,6 +12,11 @@ public class Polonium {
 		java.util.Scanner in = new java.util.Scanner(System.in);
 		
 		System.out.printf("Polonium v%s starting...   ", P_VERSION);
+		
+		if (args.length == 1 && args[0].equals("-help")) {
+			System.out.println(""); // FIXME: write help
+		}
+		
 		com.meteorcode.JRPNMachine.RPNMachine machine = new com.meteorcode.JRPNMachine.RPNMachine();
 		
 		String input = null;
@@ -33,10 +38,10 @@ public class Polonium {
 				}
 			} 
 			catch (NumberFormatException e) {
-				System.err.printf("ERR: NumberFormatException\nPlease enter acceptable operators and operands!");
+				System.out.printf("\nERR: NumberFormatException\nPlease enter acceptable operators and operands!\n");
 			}
 			catch (Exception e) {
-				System.err.printf("ERR: Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
+				System.out.printf("\nERR: Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
 			}
 		} while(input != null && !input.equals("x"));
 		
