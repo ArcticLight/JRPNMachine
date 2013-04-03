@@ -75,7 +75,7 @@ public class RPNMachine {
 			case ADD:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (Value.add(a, b))));
+				instructionStack.push (new StackMember (Value.add(a, b)));
 				break;
 			case SUBTRACT:
 				b = nextValue();
@@ -85,12 +85,12 @@ public class RPNMachine {
 			case MULTIPLY:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (Value.multiply(a, b));
+				instructionStack.push (new StackMember (Value.multiply(a, b)));
 				break;
 			case DIVIDE:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (Value.divide(a, b));
+				instructionStack.push (new StackMember (Value.divide(a, b)));
 				break;
 			case CLEAR:
 				instructionStack.pop();
