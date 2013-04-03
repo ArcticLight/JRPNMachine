@@ -42,9 +42,6 @@ public class RPNMachine {
 			case "*":
 				instructionStack.push(new StackMember (Operation.MULTIPLY));
 				break;
-			case "%":
-				instructionStack.push(new StackMember (Operation.MODULO));
-				break;
 			case "c":
 				instructionStack.push(new StackMember (Operation.CLEAR));
 				break;	
@@ -69,7 +66,8 @@ public class RPNMachine {
 	 */
 	public void eval () {
 		StackMember current = instructionStack.pop();
-		double a, b;
+		Value a;
+		Value b;
 		switch(current.getOp()) {
 			case DATA:
 				instructionStack.push(current);
@@ -77,7 +75,7 @@ public class RPNMachine {
 			case ADD:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push (new StackMember (a + b));
+				instructionStack.push (new StackMember (Value.add(a, b))));
 				break;
 			case SUBTRACT:
 				b = nextValue();
