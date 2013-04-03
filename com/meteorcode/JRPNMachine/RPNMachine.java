@@ -98,7 +98,8 @@ public class RPNMachine {
 			case POWER:
 				b = nextValue();
 				a = nextValue();
-				instructionStack.push(new StackMember (Value.power(a, b)));
+				instructionStack.push (new StackMember (Value.power(a, b)));
+				break;
 			case CLEAR:
 				instructionStack.pop();
 				break;
