@@ -5,7 +5,7 @@
 
 public class Polonium {
 	
-	public static final String P_VERSION = "0.3b";
+	public static final String P_VERSION = "0.3_2b";
 	
 	//declare Polonium specific instructions here please.
 	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt", "h", "help"};
@@ -24,7 +24,7 @@ public class Polonium {
 		String input = null;
 		
 		System.out.printf("[ ok ]\n\n");
-		List<String> instructions = java.util.Arrays.asList(P_INSTRUCTIONS);
+		java.util.List<String> instructions = java.util.Arrays.asList(P_INSTRUCTIONS);
 		do {
 			try {
 				System.out.printf("%s\n > ", machine.showState());
