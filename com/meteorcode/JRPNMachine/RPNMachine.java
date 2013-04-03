@@ -17,7 +17,6 @@ public class RPNMachine {
 	
 	protected java.util.Stack<StackMember> instructionStack;
 	
-	
 	/**
 	 * 0-param constructor
 	 */

@@ -12,11 +12,13 @@ public class StackMember {
     Operation op;							// the operation type of this stack member
     enum Operation { DATA, ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, CLEAR, CLEAR_ALL }	// possible operation identities for stack members
 	
+    
+    
 	/**
 	 * constructor: creates a new StackMember with a value (operand)
 	 * @param value
 	 */
-	public StackMember (double value) {
+	public StackMember (String value) {
 		this.value = value;
 		this.op = Operation.DATA;
 	}

@@ -12,10 +12,10 @@ import java.math.BigDecimal;
 public class Value {
 	
 	//are new things precise?
-	private static boolean New_Prescise;
+	private static boolean NewPrecise;
 	
 	//am I a precise object?
-	private boolean my_precision;
+	private boolean myPrecision;
 	
 	//contained data
 	private double doublData;
@@ -23,8 +23,8 @@ public class Value {
 	
 	
 	public Value(String instantiation) throws NumberFormatException {
-		my_precision = New_Precise;
-		if(New_Precise) {
+		myPrecision = NewPrecise;
+		if(NewPrecise) {
 			bigData = new BigDecimal(instantiation);
 		}
 		else {
@@ -33,16 +33,16 @@ public class Value {
 	}
 	
 	private Value(BigDecimal data) {
-		my_precision = true;
+		myPrecision = true;
 		bigData = data;
 	}
 	
 	public boolean precise() {
-		return my_precision;
+		return myPrecision;
 	}
 	
 	public double getUnprecise() {
-		if(my_precision) {
+		if(myPrecision) {
 			return bigData.doubleValue();
 		}
 		else {
@@ -51,7 +51,7 @@ public class Value {
 	}
 	
 	public BigDecimal getPrecise() {
-		if(my_precision) {
+		if(myPrecision) {
 			return bigData;
 		} else {
 			return new BigDecimal(doublData);
@@ -65,7 +65,7 @@ public class Value {
 	}
 	
 	static {
-		New_Precise = false;
+		NewPrecise = false;
 	}
 	
 	
