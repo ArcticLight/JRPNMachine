@@ -3,6 +3,7 @@
  */
 package com.meteorcode.JRPNMachine;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * @author Hawk Weisman
