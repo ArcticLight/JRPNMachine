@@ -1,17 +1,49 @@
-/**
- * @author Max Clive
- * @author Hawk Weisman
- *
- */
+/********************************************************************\
+ * Polonium.java													*
+ * A command-line interface for a JRPNMachine calculator.			*
+ * 																	*
+ * @author Max Clive												*
+ * @author Hawk Weisman												*
+ * @version 0.3_3b													*
+\********************************************************************/
  
 import com.meteorcode.JRPNMachine.Value;
 
 public class Polonium {
 	
-	public static final String P_VERSION = "0.3_2b";
+	// current version string
+	public static final String P_VERSION = "0.3_3b";
 	
 	//declare Polonium specific instructions here please.
 	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt", "h", "help"};
+	
+	/**
+	 * prints the Polonium help file
+	 */
+	public static void printHelp () {
+		System.out.printf (">> Welcome to the polonium v%s help file\n", P_VERSION);
+		System.out.println(">> Polonium commands: \n"
+		                 + ">> x, exit: quit Polonium\n" 
+				         + ">> pd, p: display the current precision mode\n" 
+				         + ">> pt: Toggles the current precision mode \n"
+				         + ">> h, help: display this help file");
+		System.out.println(">> RPNMachine commands: \n"
+		                 + ">> +, -, /, *: add, subtract, divide, multiply \n"
+				         + ">> ^: raise the next number to the power of the number after it\n"
+				         + ">> c, clear: remove a number or instruction from the stack\n"
+				         + ">> ca, clearall: remove all numbers or instructions from the stack\n");
+	}
+	
+	/**
+	 * toggles current precision state and tells the user
+	 */
+	public static void togglePrecision () {
+	    Value.setDefaultPrecision(!Value.getDefaultPrecision());
+	    System.out.printf("Precision mode toggled to %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
+	     if (Value.getDefaultPrecision()){
+	    	System.out.println("Some operations may be unavailable in this precision mode.");
+	   	}
+	}
 	
 	public static void main(String[] args) {
 		java.util.Scanner in = new java.util.Scanner(System.in);
@@ -19,7 +51,7 @@ public class Polonium {
 		System.out.printf("Polonium v%s starting...   ", P_VERSION);
 		
 		if (args.length == 1 && args[0].equals("-help")) {
-			System.out.println(""); // FIXME: write help
+			printHelp();
 		}
 		
 		com.meteorcode.JRPNMachine.RPNMachine machine = new com.meteorcode.JRPNMachine.RPNMachine();
@@ -55,26 +87,12 @@ public class Polonium {
 						    System.out.printf("The current default precision mode is %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
 							break;
 						case "pt":
-						    Value.setDefaultPrecision(!Value.getDefaultPrecision());
-						    System.out.printf("Precision mode toggled to %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
-						     if (Value.getDefaultPrecision()){
-						    	System.out.println("Some operations may be unavailable in this precision mode.");
-						   	}
+							togglePrecision();
 							break;
 						//h and help: display help
 						case "h":
 						case "help":
-							System.out.printf (">> Welcome to the polonium v%s help file\n", P_VERSION);
-							System.out.println(">> Polonium commands: \n"
-							                 + ">> x, exit: quit Polonium\n" +
-									         + ">> pd, p: display the current precision mode\n" +
-									         + ">> pt: Toggles the current precision mode \n"
-									         + ">> h, help: display this help file"); //FIXME: max, what does pt do?
-							System.out.println(">> RPNMachine commands: \n"
-							                 + ">> +, -, /, *: add, subtract, divide, multiply \n"
-									         + ">> ^: raise the next number to the power of the number after it\n"
-									         + ">> c, clear: remove a number or instruction from the stack\n"
-									         + ">> ca, clearall: remove all numbers or instructions from the stack\n");
+							printHelp();
 							break;
 					}
 				} 
