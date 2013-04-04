@@ -3,7 +3,7 @@
  */
 package com.meteorcode.JRPNMachine;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 /**
  * @author Hawk Weisman
@@ -12,16 +12,16 @@ import java.text.NumberFormat;
  */
 public class Value {
 	
-	//are new things precise?
-	private static boolean NewPrecise;
+	private static boolean NewPrecise;		// are new values precise?
+	private static boolean reportScientific;	// are all values scientific?
 	
-	//am I a precise object?
-	private boolean myPrecision;
+	private boolean myPrecision;		// am I precise?
 	
 	//contained data
 	private double doubleData;
 	private BigDecimal bigData;
 	
+	DecimalFormat scientific = new DecimalFormat("0.0E0");
 	
 	public Value(String instantiation) throws NumberFormatException {
 		myPrecision = NewPrecise;
@@ -47,8 +47,16 @@ public class Value {
 	    return NewPrecise;
 	}
 	
+	public static boolean getScientific() {
+		return (reportScientific);
+	}
+	
 	public static void setDefaultPrecision(boolean precise) {
 	    NewPrecise = precise;
+	}
+	
+	public static void setScientific(boolean newVal) {
+	    reportScientific = newVal;
 	}
 
 	public boolean precise() {
@@ -115,16 +123,23 @@ public class Value {
 	
 	@Override
 	public String toString () {
-		if (this.precise()) {
-			return getPrecise().toString();
-		} else {
-			//if there is no fractional part
-			if(Math.floor(this.getUnprecise()) == this.getUnprecise()) {
-				return String.format("%.0f", getUnprecise());
+		if (reportScientific) {
+			if (this.precise()){
+				return scientific.format(this.getPrecise().toString());
+			} else {
+				return scientific.format(this.getUnprecise());
 			}
-			return String.format("%f",getUnprecise());
+		} else {
+			if (this.precise()) {
+				return getPrecise().toString();
+			} else {
+				//if there is no fractional part
+				if(Math.floor(this.getUnprecise()) == this.getUnprecise()) {
+					return String.format("%.0f", getUnprecise());
+				}
+				return String.format("%f",getUnprecise());
+			}
 		}
-			
 	}
 	
 	static {

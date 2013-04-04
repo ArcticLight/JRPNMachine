@@ -4,7 +4,7 @@
  * 																	*
  * @author Max Clive												*
  * @author Hawk Weisman												*
- * @version 0.3_3b													*
+ * @version 0.3RC1												*
 \********************************************************************/
  
 import com.meteorcode.JRPNMachine.Value;
@@ -12,10 +12,10 @@ import com.meteorcode.JRPNMachine.Value;
 public class Polonium {
 	
 	// current version string
-	public static final String P_VERSION = "0.3_3b";
+	public static final String P_VERSION = "0.3RC1";
 	
 	//declare Polonium specific instructions here please.
-	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt", "h", "help"};
+	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt",  "sd", "s", "st", "h", "help"};
 	
 	/**
 	 * prints the Polonium help file
@@ -26,6 +26,8 @@ public class Polonium {
 		                 + ">> x, exit: quit Polonium\n" 
 				         + ">> pd, p: display the current precision mode\n" 
 				         + ">> pt: Toggles the current precision mode \n"
+				         + ">> sd, s: display the current notation mode (scientific, standard)"
+				         + ">> st: toggles the notation mode"
 				         + ">> h, help: display this help file");
 		System.out.println(">> RPNMachine commands: \n"
 		                 + ">> +, -, /, *: add, subtract, divide, multiply \n"
@@ -43,6 +45,14 @@ public class Polonium {
 	     if (Value.getDefaultPrecision()){
 	    	System.out.println("Some operations may be unavailable in this precision mode.");
 	   	}
+	}
+	
+	/**
+	 * toggles the scientific notation mode
+	 */
+	public static void toggleScientific () {
+		Value.setScientific(!Value.getScientific());
+		System.out.printf("Notation mode toggled to %s.\n", ((Value.getScientific())? "scientific notation" : "standard notation"));
 	}
 	
 	public static void main(String[] args) {
@@ -88,6 +98,13 @@ public class Polonium {
 							break;
 						case "pt":
 							togglePrecision();
+							break;
+						case "sd":
+						case "s":
+							System.out.printf("Polonium is currently in %s notation mode.\n", ((Value.getScientific())? "scientific" : "standard"));
+							break;
+						case "st":
+							toggleScientific();
 							break;
 						//h and help: display help
 						case "h":
