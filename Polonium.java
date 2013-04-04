@@ -130,9 +130,13 @@ public class Polonium {
 			}
 			catch (NumberFormatException e) {
 				System.out.printf("\nERR: NumberFormatException\nPlease enter acceptable operators and operands!\n");
+				if (debugMode)
+					e.printStackTrace(System.err);
 			}
 			catch (Exception e) {
 				System.out.printf("\nERR: Type: %s\n Message: %s\n\n", e.getClass().getName(), e.getMessage());
+				if (debugMode)
+					e.printStackTrace(System.err);
 			}
 		} while(input != null && !input.equals("x") && !input.equals("exit"));
 		
