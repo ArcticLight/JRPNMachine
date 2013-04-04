@@ -14,8 +14,10 @@ public class Polonium {
 	// current version string
 	public static final String P_VERSION = "0.3RC1";
 	
+	private static boolean debugMode;
+	
 	//declare Polonium specific instructions here please.
-	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt",  "sd", "s", "st", "h", "help"};
+	public static final String[] P_INSTRUCTIONS = {"x", "exit", "pd", "p", "pt",  "sd", "s", "st", "h", "help", "dbgd"};
 	
 	/**
 	 * prints the Polonium help file
@@ -56,12 +58,19 @@ public class Polonium {
 	}
 	
 	public static void main(String[] args) {
+		debugMode = false;
 		java.util.Scanner in = new java.util.Scanner(System.in);
 		
 		System.out.printf("Polonium v%s starting...   ", P_VERSION);
 		
 		if (args.length == 1 && args[0].equals("-help")) {
 			printHelp();
+		}
+		
+		//are we in debug mode?
+		java.util.List<String> argl = java.util.Arrays.asList(args);
+		if(argl.contains("-debug")) {
+			debugMode = true;
 		}
 		
 		com.meteorcode.JRPNMachine.RPNMachine machine = new com.meteorcode.JRPNMachine.RPNMachine();
@@ -110,6 +119,11 @@ public class Polonium {
 						case "h":
 						case "help":
 							printHelp();
+							break;
+						//toggle debug mode
+						case "dbgd":
+							debugMode = !debugMode;
+							System.out.printf("Debug mode is %s.\n", ((debugMode)? "on" : "off"));
 							break;
 					}
 				} 
