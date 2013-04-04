@@ -1,5 +1,6 @@
 /**
  * @author Max Clive
+ * @author Hawk Weisman
  *
  */
  
@@ -56,6 +57,9 @@ public class Polonium {
 						case "pt":
 						    Value.setDefaultPrecision(!Value.getDefaultPrecision());
 						    System.out.printf("Precision mode toggled to %s\n", ((Value.getDefaultPrecision())? "precise" : "imprecise"));
+						     if (Value.getDefaultPrecision()){
+						    	System.out.println("Some operations may be unavailable in this precision mode.");
+						   	}
 							break;
 						//h and help: display help
 						case "h":
@@ -72,8 +76,9 @@ public class Polonium {
 									         + ">> c, clear: remove a number or instruction from the stack\n"
 									         + ">> ca, clearall: remove all numbers or instructions from the stack\n");
 							break;
-				}
-			} 
+					}
+				} 
+			}
 			catch (NumberFormatException e) {
 				System.out.printf("\nERR: NumberFormatException\nPlease enter acceptable operators and operands!\n");
 			}
