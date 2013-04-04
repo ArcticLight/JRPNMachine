@@ -32,7 +32,7 @@ public class Value {
 		}
 	}
 	
-	private Value (BigDecimal data) {
+	public Value (BigDecimal data) {
 		myPrecision = true;
 		bigData = data;
 	}
@@ -40,6 +40,14 @@ public class Value {
 	public Value(double data) {
 		myPrecision = false;
 		doubleData = data;
+	}
+	
+	public static boolean getDefaultPrecision() {
+	    return NewPrecise;
+	}
+	
+	public static void setDefaultPrecision(boolean precise) {
+	    NewPrecise = precise;
 	}
 
 	public boolean precise() {
