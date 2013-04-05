@@ -4,7 +4,7 @@
  * 																	*
  * @author Max Clive												*
  * @author Hawk Weisman												*
- * @version 0.3RC1												*
+ * @version 0.3RC1													*
 \********************************************************************/
  
 import com.meteorcode.JRPNMachine.Value;

@@ -125,7 +125,7 @@ public class Value {
 	public String toString () {
 		if (reportScientific) {
 			if (this.precise()){
-				return scientific.format(this.getPrecise().toString());
+				return scientific.format(this.getPrecise());
 			} else {
 				return scientific.format(this.getUnprecise());
 			}
