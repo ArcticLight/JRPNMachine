@@ -9,4 +9,4 @@ A Java Reverse Polish Notation (postfix-notation) calculator. Has a terminal int
 
 ### Current Versions
 
-  Polonium 0.3_3b
+  Polonium 0.3RC1
