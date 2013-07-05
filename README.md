@@ -13,6 +13,5 @@ The project has two components:
 + ```java polonium -help``` displays a help file
 + ```java polonium``` enters the Polonium command-line interface
 
-### Current Versions
-
-  Polonium 0.3RC1
+### Current Release
+ [Polonium 0.3RC1](https://github.com/ArcticLight/JRPNMachine/releases/v0.3-RC1)
